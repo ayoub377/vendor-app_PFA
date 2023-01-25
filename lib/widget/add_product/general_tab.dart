@@ -50,7 +50,9 @@ class _GeneralTabState extends State<GeneralTab> with AutomaticKeepAliveClientMi
           );
         }).toList(),
       validator: (value){
-          return 'Select Category';
+          if(value!.isEmpty){
+            return 'Select Category';
+          }
       },
     );
   }
@@ -79,7 +81,9 @@ class _GeneralTabState extends State<GeneralTab> with AutomaticKeepAliveClientMi
         );
       }).toList(),
       validator: (value){
+        if(value!.isEmpty){
         return 'Select Tax Status';
+        }
       },
     );
   }
@@ -108,7 +112,9 @@ class _GeneralTabState extends State<GeneralTab> with AutomaticKeepAliveClientMi
         );
       }).toList(),
       validator: (value){
-        return 'Select Tax Status';
+        if(value!.isEmpty) {
+          return 'Select Tax amounts';
+        }
       },
     );
   }

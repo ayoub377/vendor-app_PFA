@@ -27,9 +27,13 @@ class ProductProvider with ChangeNotifier{
         String? brand,
         List? sizeList,
         String? otherDetails,
-        String? unit
+        String? unit,
+        List? imageUrls,
+        Map? seller,
       }){
-
+    if(seller!=null){
+      productData!['seller']= seller;
+    }
     if(productName!=null){
       productData!['productName']=productName;
     }
@@ -88,11 +92,22 @@ class ProductProvider with ChangeNotifier{
       productData!['otherDetails']=otherDetails;
     }if(unit!=null){
       productData!['unit']=unit;
+    }if(imageUrls!=null){
+      productData!['imageUrls']= imageUrls;
+    }if(imageUrls!=null){
+      productData!['imageUrls']= imageUrls;
     }
     notifyListeners();
   }
   getImageFile(image){
     imageFiles!.add(image);
     notifyListeners();
+  }
+  clearProductData(){
+    productData!.clear();
+    imageFiles!.clear();
+    productData!['approuved']=false;
+    notifyListeners();
+
   }
 }

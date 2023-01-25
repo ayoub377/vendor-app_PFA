@@ -50,7 +50,9 @@ class _AttributeTabState extends State<AttributeTab> with AutomaticKeepAliveClie
           );
         }).toList(),
         validator: (value){
-          return 'Select Unit';
+          if(value!.isEmpty) {
+            return 'Select Unit';
+          }
         },
       );
     }

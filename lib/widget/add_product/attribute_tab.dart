@@ -25,10 +25,52 @@ class _AttributeTabState extends State<AttributeTab> with AutomaticKeepAliveClie
       maxLines: maxLine,
     );
   }
+
+    Widget _unitDropDown(ProductProvider provider){
+      return DropdownButtonFormField<String>(
+        value: selectedUnit,
+        icon: const Icon(Icons.arrow_drop_down),
+        hint: const Text("Select Unit",style: TextStyle(
+            fontSize: 16
+        ),),
+        elevation: 16,
+        onChanged: (String? newValue) {
+          // This is called when the user selects an item.
+          setState(() {
+            selectedUnit = newValue!;
+            provider.getFormData(
+                unit: newValue
+            );
+          });
+        },
+        items: _units.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        validator: (value){
+          return 'Select Unit';
+        },
+      );
+    }
+
+
     final List<String> _sizeList=[];
     final _textSize = TextEditingController();
     bool? _saved=false;
     bool _entered = false;
+    String? selectedUnit;
+    final List<String> _units = [
+      'Kg',
+      'Grm',
+      'Litre',
+      'Ml',
+      'Nos',
+      'Feet',
+      'Yard',
+      'Set',
+    ];
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -46,6 +88,8 @@ class _AttributeTabState extends State<AttributeTab> with AutomaticKeepAliveClie
                   );
                 }
             ),
+            _unitDropDown(provider),
+
             Row(
               children: [
                 Expanded(
@@ -74,8 +118,9 @@ class _AttributeTabState extends State<AttributeTab> with AutomaticKeepAliveClie
                 }, child: Text("Add"))
               ],
             ),
+            const SizedBox(height: 10,),
             if(_sizeList.isNotEmpty)
-            Container(
+            SizedBox(
               height: 50,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -114,20 +159,25 @@ class _AttributeTabState extends State<AttributeTab> with AutomaticKeepAliveClie
             if(_sizeList.isNotEmpty)
             Column(
               children: [
-                Text("*Long press to delete",style:TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12
-                )),
-                ElevatedButton(
-                  child:Text(_saved == true? "Saved":"Press to save"),
-                    onPressed: (){
-                  setState(() {
-                    provider.getFormData(
-                        sizeList: _sizeList
-                    );
-                  });
-                  _saved=true;
-                }),
+                const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("* Long press to delete",style:TextStyle(color: Colors.grey, fontSize: 12))),
+                Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        child:Text(_saved == true? "Saved":"Press to save"),
+                          onPressed: (){
+                        setState(() {
+                          provider.getFormData(
+                              sizeList: _sizeList
+                          );
+                        });
+                        _saved=true;
+                      }),
+                    ),
+                  ],
+                ),
               ],
             ),
             _formField(

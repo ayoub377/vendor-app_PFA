@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProductProvider with ChangeNotifier{
-
-  Map<String,dynamic>? productData={};
+  Map<String,dynamic>? productData={
+    'approved':false
+  };
+  final List<XFile>? imageFiles = [];
 
   getFormData(
       {String? productName,
@@ -23,7 +26,8 @@ class ProductProvider with ChangeNotifier{
         int? shippingCharge,
         String? brand,
         List? sizeList,
-        String? otherDetails
+        String? otherDetails,
+        String? unit
       }){
 
     if(productName!=null){
@@ -82,7 +86,13 @@ class ProductProvider with ChangeNotifier{
     }
     if(otherDetails!=null){
       productData!['otherDetails']=otherDetails;
+    }if(unit!=null){
+      productData!['unit']=unit;
     }
+    notifyListeners();
+  }
+  getImageFile(image){
+    imageFiles!.add(image);
     notifyListeners();
   }
 }

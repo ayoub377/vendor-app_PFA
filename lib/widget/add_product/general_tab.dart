@@ -235,11 +235,15 @@ class _GeneralTabState extends State<GeneralTab> with AutomaticKeepAliveClientMi
                   inputType: TextInputType.number,
                   onChanged: (value){
                     // save in provider
+                    if(int.parse(value)>provider.productData!['regularPrice']){
+                      _service.scaffold(context, 'Sales price should be less than regular price');
+                      return ;
+                    }
                     setState(() {
-                      _salesPrice=true;
                       provider.getFormData(
                         salesPrice:  int.parse(value),
                       );
+                      _salesPrice=true;
                     });
                   }
               ),

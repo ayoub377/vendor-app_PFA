@@ -13,6 +13,7 @@ class FirebaseService{
   CollectionReference categories = FirebaseFirestore.instance.collection('categories');
   CollectionReference mainCategories = FirebaseFirestore.instance.collection('mainCategories');
   CollectionReference subCategories = FirebaseFirestore.instance.collection('subCategories');
+  CollectionReference product = FirebaseFirestore.instance.collection('product');
 
   final storage = FirebaseStorage.instance;
 
@@ -33,6 +34,16 @@ class FirebaseService{
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
+
+  Future<void> saveToDb({BuildContext? context,CollectionReference? collection,Map<String, dynamic>? data}) {
+    // Call the user's CollectionReference to add a new user
+    return collection!
+        .add(data)
+        .then((value) => scaffold(context, "This product is saveed"))
+        .catchError((error) => scaffold(context, "Failed to add user: $error"));
+  }
+
+
 
   String formattedDate(date){
     var outPutFormate = DateFormat('dd/MM/yyyy hh:mm aa');
@@ -58,7 +69,14 @@ class FirebaseService{
     );
   }
 
-
-
+   scaffold(context, message){
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message),
+      action: SnackBarAction(
+        label: 'OK',
+        onPressed: (){
+          ScaffoldMessenger.of(context).clearSnackBars();
+        },
+      ),));
+  }
 
 }

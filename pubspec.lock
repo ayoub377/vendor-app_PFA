@@ -231,7 +231,7 @@ packages:
       name: firebase_ui_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.8"
+    version: "1.1.9"
   firebase_ui_localizations:
     dependency: transitive
     description:
@@ -245,14 +245,14 @@ packages:
       name: firebase_ui_oauth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.8"
+    version: "1.1.9"
   firebase_ui_oauth_google:
     dependency: "direct main"
     description:
       name: firebase_ui_oauth_google
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.15"
+    version: "1.0.16"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -335,7 +335,7 @@ packages:
       name: google_sign_in_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.4"
+    version: "6.1.5"
   google_sign_in_ios:
     dependency: transitive
     description:
@@ -377,14 +377,14 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.6"
+    version: "0.8.6+1"
   image_picker_android:
     dependency: transitive
     description:
       name: image_picker_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5+4"
+    version: "0.8.5+5"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -398,7 +398,7 @@ packages:
       name: image_picker_ios
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.6+5"
+    version: "0.8.6+6"
   image_picker_platform_interface:
     dependency: transitive
     description:
